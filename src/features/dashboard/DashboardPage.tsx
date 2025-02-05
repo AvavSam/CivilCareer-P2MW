@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 
-import { Sidebar } from "@/components/layout/Sidebar/sidebar";
+import { Sidebar } from "@/components/layout/Sidebar";
 import { Header } from "@/components/layout/Header/header";
 import { CourseCard } from "@/features/dashboard/sections/CourseCard";
 import { LearningPathCard } from "@/features/dashboard/sections/LearningPathCard";
@@ -10,13 +10,14 @@ import { COURSES_DATA, LEARNING_PATHS_DATA, LearningPath } from "./constants";
 
 function DashboardPage() {
   const [selectedPath, setSelectedPath] = useState<LearningPath | null>(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
     <div className="flex h-screen bg-gray-50">
-      <Sidebar />
+      <Sidebar isOpen={isSidebarOpen} onOpenChange={setIsSidebarOpen} />
 
       <div className="flex-1 overflow-auto">
-        <Header />
+        <Header onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
 
         <main className="p-6">
           <h1 className="mb-6 text-2xl font-bold text-gray-800">Selamat Datang, P2MW! 👋</h1>

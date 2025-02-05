@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Home, BookOpen, GraduationCap, Users, MessageSquare, Settings, FileQuestion } from "lucide-react";
+import { Home, BookOpen, GraduationCap, Users, MessageSquare, FileQuestion, User } from "lucide-react";
 import { MenuItem } from "@/components/layout/Sidebar/constant";
 
 type MenuStore = {
@@ -18,6 +18,6 @@ export const useMenuStore = create<MenuStore>((set) => ({
     { icon: FileQuestion, label: "Latihan Soal", path: "/exercises" },
     { icon: Users, label: "Mentor", path: "/mentors" },
     { icon: MessageSquare, label: "Forum Diskusi", path: "/forum" },
-    { icon: Settings, label: "Pengaturan", path: "/settings" },
+    { icon: User, label: "Akun", path: "/account" },
   ],
 }));
