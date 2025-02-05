@@ -1,7 +1,7 @@
-import React from 'react';
-import { X, CheckCircle, Lock, Play } from 'lucide-react';
-import Link from 'next/link';
-import { LearningPath } from '../constants';
+import React from "react";
+import { X, CheckCircle, Lock, Play } from "lucide-react";
+import Link from "next/link";
+import { LearningPath } from "../constants";
 
 interface LearningPathModalProps {
   learningPath: LearningPath;
@@ -10,7 +10,7 @@ interface LearningPathModalProps {
 
 export const LearningPathModal: React.FC<LearningPathModalProps> = ({ learningPath, onClose }) => {
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 p-4 z-50">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4">
       <div className="flex max-h-[80vh] w-full max-w-2xl flex-col rounded-xl bg-white">
         <div className="flex items-center justify-between border-b p-6">
           <div>
@@ -53,7 +53,7 @@ export const LearningPathModal: React.FC<LearningPathModalProps> = ({ learningPa
             ))}
           </div>
         </div>
-        <div className="border-t rounded-xl bg-gray-50 p-6">
+        <div className="rounded-xl border-t bg-gray-50 p-6">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-500">Progress Learning Path</p>

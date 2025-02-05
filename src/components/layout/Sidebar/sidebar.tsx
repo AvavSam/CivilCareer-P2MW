@@ -1,8 +1,8 @@
-import React from 'react';
-import { Building2 } from 'lucide-react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useMenuStore } from '@/store/useMenuStore';
+import React from "react";
+import { Building2 } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useMenuStore } from "@/store/useMenuStore";
 
 export const Sidebar: React.FC = () => {
   const pathname = usePathname();

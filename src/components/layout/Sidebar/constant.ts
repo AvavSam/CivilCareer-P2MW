@@ -4,4 +4,3 @@ export type MenuItem = {
   path: string;
   active?: boolean;
 };
-

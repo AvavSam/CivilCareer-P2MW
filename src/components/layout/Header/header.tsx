@@ -1,9 +1,9 @@
-import React from 'react';
-import { Search, Bell } from 'lucide-react';
+import React from "react";
+import { Search, Bell } from "lucide-react";
 
 export const Header: React.FC = () => {
   return (
-    <header className="flex items-center justify-between bg-white px-6 py-4 shadow-sm border-b border-gray-200">
+    <header className="flex items-center justify-between border-b border-gray-200 bg-white px-6 py-4 shadow-sm">
       <div className="flex flex-1 items-center">
         <Search className="h-5 w-5 text-gray-500" />
         <input

@@ -1,5 +1,5 @@
-import { VideoPage } from '@/features/video'
+import { VideoPage } from "@/features/video";
 
 export default function Video() {
-  return <VideoPage />
+  return <VideoPage />;
 }

@@ -21,19 +21,25 @@ src/
 ## Deskripsi Folder
 
 ### `src/app`
+
 Folder ini berisi konfigurasi routing Next.js dan layout utama aplikasi. File `page.tsx` berfungsi sebagai halaman utama (root).
 
 ### `src/components`
+
 Berisi komponen-komponen reusable yang dapat digunakan di berbagai bagian aplikasi.
+
 - `layout/`: Komponen layout seperti Header dan Sidebar yang digunakan di seluruh aplikasi
 
 ### `src/features`
+
 Berisi modul-modul fitur utama aplikasi yang diorganisir berdasarkan domain:
+
 - `dashboard/`: Fitur dashboard user yang menampilkan learning path dan course cards
 - `home/`: Halaman beranda dengan informasi features dan landing page
 - `video/`: Fitur pembelajaran video termasuk video player dan daftar pelajaran
 
 ### `src/store`
+
 Berisi state management menggunakan Zustand untuk mengelola state global aplikasi.
 
 ## Teknologi yang Digunakan
@@ -46,6 +52,7 @@ Berisi state management menggunakan Zustand untuk mengelola state global aplikas
 ## Cara Menjalankan Proyek
 
 1. Install dependencies:
+
 ```bash
 npm install
 # atau
@@ -57,6 +64,7 @@ bun install
 ```
 
 2. Jalankan development server:
+
 ```bash
 npm run dev
 # atau

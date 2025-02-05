@@ -1,6 +1,6 @@
-import React from 'react';
-import { Play } from 'lucide-react';
-import { Course } from '../constants';
+import React from "react";
+import { Play } from "lucide-react";
+import { Course } from "../constants";
 
 interface CourseCardProps {
   course: Course;

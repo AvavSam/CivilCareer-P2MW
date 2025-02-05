@@ -1,14 +1,6 @@
-import { create } from 'zustand';
-import {
-  Home,
-  BookOpen,
-  GraduationCap,
-  Users,
-  MessageSquare,
-  Settings,
-  FileQuestion,
-} from "lucide-react";
-import { MenuItem } from '@/components/layout/Sidebar/constant';
+import { create } from "zustand";
+import { Home, BookOpen, GraduationCap, Users, MessageSquare, Settings, FileQuestion } from "lucide-react";
+import { MenuItem } from "@/components/layout/Sidebar/constant";
 
 type MenuStore = {
   activeMenu: string;
@@ -17,7 +9,7 @@ type MenuStore = {
 };
 
 export const useMenuStore = create<MenuStore>((set) => ({
-  activeMenu: 'dashboard',
+  activeMenu: "dashboard",
   setActiveMenu: (menu) => set({ activeMenu: menu }),
   menuItems: [
     { icon: Home, label: "Dashboard", path: "/dashboard" },

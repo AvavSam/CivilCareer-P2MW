@@ -1,5 +1,5 @@
-import React from 'react';
-import { LearningPath } from '../constants';
+import React from "react";
+import { LearningPath } from "../constants";
 
 interface LearningPathCardProps {
   path: LearningPath;
