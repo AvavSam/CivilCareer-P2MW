@@ -8,6 +8,11 @@ export const authOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" },
+      },
       async authorize(credentials) {
         const user = await prisma.user.findUnique({
           where: { email: credentials.email },
@@ -22,27 +27,28 @@ export const authOptions = {
     }),
   ],
   session: {
-    strategy: "jwt", // Bisa diubah ke "database" jika ingin menyimpan sesi di DB
-    maxAge: 30 * 24 * 60 * 60, // Session akan bertahan selama 30 hari
-    updateAge: 24 * 60 * 60, // Session akan diperbarui setiap 24 jam
+    strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60,
+    updateAge: 24 * 60 * 60,
+    checkSessionInterval: 5 * 60 * 1000, // Interval polling dalam milidetik (misalnya, 5 menit)
   },
   callbacks: {
     async session({ session, token }) {
-      // Menambahkan informasi tambahan ke sesi pengguna
       if (token) {
         session.user.id = token.id;
         session.user.name = token.name;
         session.user.email = token.email;
       }
+      console.log("ini session", session);
       return session;
     },
     async jwt({ token, user }) {
-      // Menambahkan data user ke token JWT
       if (user) {
         token.id = user.id;
         token.name = user.name;
         token.email = user.email;
       }
+      console.log("ini token: ", token);
       return token;
     },
   },
