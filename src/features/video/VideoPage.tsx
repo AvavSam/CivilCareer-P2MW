@@ -7,10 +7,11 @@ import { CourseDescription } from "@/features/video/sections/CourseDescription";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { Header } from "@/components/layout/Header/header";
 import { LESSONS_DATA, courseDescription } from "@/features/video/constants";
-
 function VideoPage() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  // Create a single supabase client for interacting with your database
 
   return (
     <div className="flex h-screen bg-gray-50">
