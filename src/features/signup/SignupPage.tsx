@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Building2, Mail, Lock, User, Eye, EyeOff, Facebook, Linkedin } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -9,10 +10,26 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const router = useRouter();
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle signup logic here
-    console.log("Signup attempt with:", { name, email, password });
+    const data = { name, email, password };
+    fetch("/api/v1/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+    router.push("/login");
   };
 
   return (

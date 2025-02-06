@@ -2,16 +2,27 @@
 import React, { useState } from "react";
 import { Building2, Mail, Lock, Eye, EyeOff, Facebook, Linkedin } from "lucide-react";
 import Link from "next/link";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const router = useRouter();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    const data = { email, password };
     e.preventDefault();
-    // Handle login logic here
-    console.log("Login attempt with:", { email, password });
+    const result = await signIn("credentials", {
+      ...data,
+      redirect: false,
+    });
+    if (result.error) {
+      return;
+    }
+    router.push("/");
   };
 
   return (

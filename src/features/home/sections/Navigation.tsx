@@ -3,7 +3,29 @@ import { Building2 } from "lucide-react";
 import Link from "next/link";
 import { NAV_LINKS } from "../constants";
 
-const Navigation = () => (
+interface User {
+  id: string;
+
+  name: string | null;
+
+  email: string | null;
+
+  emailVerified: Date | null;
+
+  image: string | null;
+
+  password: string;
+
+  createdAt: Date;
+
+  updatedAt: Date;
+}
+
+interface NavigationProps {
+  user: User | null;
+}
+
+const Navigation: React.FC<NavigationProps> = ({ user }) => (
   <nav className="fixed z-50 w-full bg-white/95 shadow-sm backdrop-blur-sm">
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div className="flex h-16 items-center justify-between">
@@ -23,12 +45,25 @@ const Navigation = () => (
           ))}
         </div>
         <div className="flex items-center space-x-4">
-          <Link href="/login" className="px-4 py-2 text-blue-600 hover:text-blue-700">
-            Login
-          </Link>
-          <Link href="/signup" className="rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
-            Daftar
-          </Link>
+          {!user ? (
+            <>
+              <Link href="/login" className="px-4 py-2 text-blue-600 hover:text-blue-700">
+                Login
+              </Link>
+              <Link href="/signup" className="rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
+                Daftar
+              </Link>
+            </>
+          ) : (
+            <>
+              <img
+                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=100"
+                alt="Profile"
+                className="h-8 w-8 rounded-full object-cover"
+              />
+              <span className="font-medium text-gray-700">{user.name}</span>
+            </>
+          )}
         </div>
       </div>
     </div>
