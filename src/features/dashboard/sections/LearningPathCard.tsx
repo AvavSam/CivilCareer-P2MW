@@ -1,5 +1,5 @@
 import React from "react";
-import { LearningPath } from "../constants";
+import { LearningPath } from "@/types/constants";
 
 interface LearningPathCardProps {
   path: LearningPath;
@@ -13,7 +13,7 @@ export const LearningPathCard: React.FC<LearningPathCardProps> = ({ path, onClic
       onClick={() => onClick(path)}
     >
       <div className="flex items-start space-x-4">
-        <img src={path.image} alt={path.title} className="h-24 w-24 rounded-lg object-cover" />
+        <img src={path.thumbnail} alt={path.title} className="h-24 w-24 rounded-lg object-cover" />
         <div className="flex-1">
           <h3 className="mb-2 font-semibold text-gray-800">{path.title}</h3>
           <p className="mb-3 text-sm text-gray-500">{path.description}</p>

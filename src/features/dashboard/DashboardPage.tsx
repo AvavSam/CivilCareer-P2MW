@@ -6,7 +6,7 @@ import { Header } from "@/components/layout/Header/header";
 import { CourseCard } from "@/features/dashboard/sections/CourseCard";
 import { LearningPathCard } from "@/features/dashboard/sections/LearningPathCard";
 import { LearningPathModal } from "@/features/dashboard/sections/LearningPathModal";
-import { COURSES_DATA, LEARNING_PATHS_DATA, LearningPath } from "./constants";
+import { LEARNING_PATHS_DATA, LearningPath } from "@/types/constants";
 
 function DashboardPage() {
   const [selectedPath, setSelectedPath] = useState<LearningPath | null>(null);
@@ -31,9 +31,9 @@ function DashboardPage() {
               </a>
             </div>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-              {COURSES_DATA.map((course, index) => (
-                <CourseCard key={index} course={course} />
-              ))}
+                {LEARNING_PATHS_DATA.slice(2, 4).map((course, index) => (
+                <CourseCard key={index} path={course} onClick={setSelectedPath} />
+                ))}
             </div>
           </section>
 
