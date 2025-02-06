@@ -61,7 +61,7 @@ export const FEATURES_DATA: FeatureData[] = [
   },
   {
     icon: BookOpen,
-    title: "Akses Selamanya",
+    title: "Akses Dimana Saja",
     description: "Pelajari materi kapanpun dan dimanapun",
   },
 ];

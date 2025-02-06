@@ -8,7 +8,7 @@ interface LessonListProps {
 
 export const LessonList: React.FC<LessonListProps> = ({ lessons }) => {
   return (
-    <div className="h-[400px] overflow-y-auto rounded-lg bg-white p-4">
+    <div className="h-fit overflow-y-auto rounded-lg bg-white p-4">
       <h2 className="mb-4 font-semibold text-black">Daftar Materi</h2>
       {lessons.map((lesson, index) => (
         <div key={index} className="mb-2 flex items-center rounded-lg p-3 hover:bg-gray-50">

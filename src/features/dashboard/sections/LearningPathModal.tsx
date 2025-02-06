@@ -1,7 +1,7 @@
 import React from "react";
 import { X, CheckCircle, Lock, Play } from "lucide-react";
 import Link from "next/link";
-import { LearningPath } from "../constants";
+import { LearningPath } from "@/types/constants";
 
 interface LearningPathModalProps {
   learningPath: LearningPath;
