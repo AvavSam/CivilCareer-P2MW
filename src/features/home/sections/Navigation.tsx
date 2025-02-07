@@ -57,9 +57,9 @@ const Navigation: React.FC<NavigationProps> = ({ user }) => (
           ) : (
             <>
               <img
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=100"
+                src="https://as1.ftcdn.net/jpg/03/46/83/96/220_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"
                 alt="Profile"
-                className="h-8 w-8 rounded-full object-cover"
+                className="h-12 w-12 rounded-full object-cover"
               />
               <span className="font-medium text-gray-700">{user.name}</span>
             </>
