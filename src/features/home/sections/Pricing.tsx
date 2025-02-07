@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react";
 import PricingCard from "./PricingCard";
 import { PRICING_DATA } from "../constants";
