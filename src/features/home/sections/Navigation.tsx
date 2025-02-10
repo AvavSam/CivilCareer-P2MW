@@ -3,22 +3,13 @@ import { Building2 } from "lucide-react";
 import Link from "next/link";
 import { NAV_LINKS } from "../constants";
 
-interface User {
-  id: string;
+import { User as NextAuthUser } from "next-auth";
 
-  name: string | null;
-
-  email: string | null;
-
+interface User extends NextAuthUser {
   emailVerified: Date | null;
-
-  image: string | null;
-
-  password: string;
-
-  createdAt: Date;
-
-  updatedAt: Date;
+  password: string | null;
+  createdAt: Date | null;
+  updatedAt: Date | null;
 }
 
 interface NavigationProps {

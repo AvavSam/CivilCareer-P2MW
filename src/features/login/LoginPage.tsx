@@ -22,7 +22,7 @@ const Login = () => {
     if (result.error) {
       return;
     }
-    router.push("/");
+    router.push("/dashboard");
   };
 
   return (

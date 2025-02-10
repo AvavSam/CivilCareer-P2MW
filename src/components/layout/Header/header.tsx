@@ -7,9 +7,10 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
+
   return (
     <header className="sticky top-0 z-10 flex items-center justify-between border-b border-gray-200 bg-white px-6 py-4 shadow-sm">
-      <div className="flex items-center gap-4 w-full md:mr-10">
+      <div className="flex items-center gap-4 md:w-1/2 md:pr-10">
         <button onClick={onToggleSidebar} className="rounded-lg p-2 hover:bg-gray-100 md:hidden">
           <IconMenu2 className="h-6 w-6 text-gray-800" />
         </button>
