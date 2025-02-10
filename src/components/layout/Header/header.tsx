@@ -27,7 +27,7 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
           <Bell className="h-6 w-6" />
           <span className="absolute right-0 top-0 h-2 w-2 rounded-full bg-red-500"></span>
         </button>
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-4">
           <img
             src="https://as1.ftcdn.net/jpg/03/46/83/96/220_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"
             alt="Profile"
