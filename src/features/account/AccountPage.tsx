@@ -1,34 +1,44 @@
 "use client";
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { Header } from "@/components/layout/Header/header";
 import { Eye, EyeOff, Settings, LogOut } from "lucide-react";
+import { signOut } from "next-auth/react";
+import { authUserSession } from "@/libs/auth-libs";
+import { useSession } from "next-auth/react";
 
 export default function AccountPage() {
+  const { data: session, status } = useSession();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
   const [showPassword, setShowPassword] = useState(false);
-  // const [isLoading, setIsLoading] = useState(false);
   const [showLogoutDialog, setShowLogoutDialog] = useState(false);
+  const [userData, setUserData] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   setIsLoading(true);
-  //   try {
-  //     await new Promise((resolve) => setTimeout(resolve, 1000));
-  //     alert("Settings updated successfully!");
-  //   } catch (error) {
-  //     alert("An error occurred. Please try again.");
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // };
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        if (status === "authenticated" && session?.user) {
+          setUserData(session.user);
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  // const handleLogout = () => {
-  //   // Add your logout logic here
-  //   setShowLogoutDialog(false);
-  // };
+    fetchUserData();
+  }, [session, status]);
+
+  if (status === "loading" || isLoading) {
+    return <div className="flex h-screen items-center justify-center">Loading...</div>;
+  }
+
+  if (status === "unauthenticated") {
+    window.location.href = "/auth/signin";
+    return null;
+  }
 
   return (
     <div className="flex h-screen bg-gray-50">
@@ -45,12 +55,12 @@ export default function AccountPage() {
                 <div className="rounded-lg bg-white p-6 shadow-sm">
                   <div className="flex flex-col items-center">
                     <img
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      src={userData?.image || "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"}
                       alt="Profile"
                       className="h-32 w-32 rounded-full object-cover"
                     />
-                    <h2 className="mt-4 text-xl font-semibold">Avav Abdillah Sam</h2>
-                    <p className="text-gray-500">avav.sam@example.com</p>
+                    <h2 className="mt-4 text-xl font-semibold">{userData?.name || "Loading..."}</h2>
+                    <p className="text-gray-500">{userData?.email || "Loading..."}</p>
                   </div>
                   <div className="mt-6 border-t pt-6">
                     <h3 className="mb-4 font-semibold">Membership</h3>
@@ -94,6 +104,7 @@ export default function AccountPage() {
                         <label className="text-sm font-medium">Name</label>
                         <input
                           name="name"
+                          defaultValue={userData?.name || ""}
                           className="w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                           required
                         />
@@ -103,6 +114,7 @@ export default function AccountPage() {
                         <input
                           name="email"
                           type="email"
+                          defaultValue={userData?.email || ""}
                           className="w-full rounded-lg border border-gray-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                           required
                         />
@@ -187,7 +199,7 @@ export default function AccountPage() {
                 <button
                   className="rounded-lg bg-red-600 px-4 py-2 text-white hover:bg-red-700"
                   onClick={() => {
-                    // Handle logout
+                    signOut({ callbackUrl: "/" });
                     setShowLogoutDialog(false);
                   }}
                 >
