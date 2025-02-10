@@ -7,9 +7,7 @@ import { CourseDescription } from "@/features/video/sections/CourseDescription";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { Header } from "@/components/layout/Header/header";
 import { LESSONS_DATA, courseDescription } from "@/features/video/constants";
-
-function VideoPage() {
-  const [isPlaying, setIsPlaying] = useState(false);
+function VideoPage(data: any | undefined) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
@@ -26,9 +24,7 @@ function VideoPage() {
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
               <div className="lg:col-span-2">
                 <VideoPlayer
-                  thumbnail="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
-                  isPlaying={isPlaying}
-                  onPlayPause={() => setIsPlaying(!isPlaying)}
+                  url={data.datas.url}
                 />
               </div>
 

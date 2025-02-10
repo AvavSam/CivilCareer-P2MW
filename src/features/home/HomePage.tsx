@@ -1,3 +1,4 @@
+// "use client";
 import React from "react";
 import Navigation from "./sections/Navigation";
 import Hero from "./sections/Hero";
@@ -6,11 +7,19 @@ import Pricing from "./sections/Pricing";
 import Testimonials from "./sections/Testimonials";
 import CTA from "./sections/CTA";
 import Footer from "./sections/Footer";
+import { authUserSession } from "@/libs/auth-libs";
+// import { useSession } from "next-auth/react";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const user = await authUserSession();
+  // const { data: session } = useSession({
+  // required: true,
+  // refetchInterval: 0, // Pastikan tidak ada polling otomatis
+  // refetchOnWindowFocus: false,
+  // });
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navigation />
+      <Navigation user={user} />
       <Hero />
       <Features />
       <Pricing />
