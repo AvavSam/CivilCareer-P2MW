@@ -9,11 +9,11 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
-
 }
+
 model Account {
   id                 String    @id @default(cuid())
   userId             String
@@ -55,12 +55,30 @@ model User {
 }
 
 model Video {
-  id          String   @id @default(cuid())
+  id            String              @id @default(cuid())
+  title         String
+  description   String?
+  url           String
+  fileSize      Int?
+  mimeType      String?
+  createdAt     DateTime            @default(now())
+  updatedAt     DateTime            @updatedAt
+  learningPaths LearningPathVideo[]
+}
+
+model LearningPath {
+  id          String              @id @default(cuid())
   title       String
   description String?
-  url         String
-  fileSize    Int?
-  mimeType    String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  videos      LearningPathVideo[]
+}
+
+model LearningPathVideo {
+  learningPathId String
+  videoId        String
+
+  learningPath LearningPath @relation(fields: [learningPathId], references: [id], onDelete: Cascade)
+  video        Video        @relation(fields: [videoId], references: [id], onDelete: Cascade)
+
+  @@id([learningPathId, videoId]) // Composite Primary Key
 }
