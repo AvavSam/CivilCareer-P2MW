@@ -24,6 +24,13 @@ const Login = () => {
     }
     router.push("/dashboard");
   };
+  const handlerSignInWithGoogle = (e: React.FormEvent) => {
+    e.preventDefault();
+    signIn("google", {
+      callbackUrl: "/",
+    });
+  };
+
 
   return (
     <div className="flex min-h-screen flex-col justify-center bg-gray-50 py-12 sm:px-6 lg:px-8">
@@ -139,10 +146,11 @@ const Login = () => {
             <div className="mt-6 grid grid-cols-2 gap-3">
               <div>
                 <a
+                  onClick={handlerSignInWithGoogle}
                   href="#"
                   className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
                 >
-                  <Facebook className="h-5 w-5 text-blue-600" />
+                  <Linkedin className="h-5 w-5 text-blue-600" />
                 </a>
               </div>
               <div>
@@ -150,7 +158,7 @@ const Login = () => {
                   href="#"
                   className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
                 >
-                  <Linkedin className="h-5 w-5 text-blue-600" />
+                  <Facebook className="h-5 w-5 text-blue-600" />
                 </a>
               </div>
             </div>
