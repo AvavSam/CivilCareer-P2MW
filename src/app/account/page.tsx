@@ -1,5 +1,5 @@
-import { AccountPage } from '@/features/account'
+import { AccountPage } from "@/features/account";
 
 export default function Account() {
-  return <AccountPage />
+  return <AccountPage />;
 }

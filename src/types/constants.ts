@@ -128,7 +128,7 @@ export const LEARNING_PATHS_DATA: LearningPath[] = [
         description:
           "Membahas analisis beban yang bekerja pada struktur bangunan, perhitungan gaya dalam elemen struktur, dan penentuan reaksi.",
       },
-    ]
+    ],
   },
   {
     title: "AutoCAD untuk Teknik Sipil",
@@ -156,7 +156,7 @@ export const LEARNING_PATHS_DATA: LearningPath[] = [
         isCompleted: false,
         isLocked: true,
         description: "Menggambar detail struktur bangunan menggunakan AutoCAD.",
-      }
-    ]
+      },
+    ],
   },
 ];

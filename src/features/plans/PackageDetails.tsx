@@ -11,7 +11,7 @@ const PackageDetails = ({ paket }: { paket: PaketProps }) => {
   return (
     <div className="mb-8 max-w-3xl overflow-hidden rounded-lg bg-white shadow-md">
       <div className="rounded-t-lg bg-gradient-to-r from-blue-600 to-blue-700 p-6 text-white">
-        <div className="space-y-4 md:space-y-0 md:flex items-center justify-between">
+        <div className="items-center justify-between space-y-4 md:flex md:space-y-0">
           <div>
             <h2 className="text-3xl font-bold">{paket.nama}</h2>
             <p className="text-blue-100">
@@ -21,26 +21,26 @@ const PackageDetails = ({ paket }: { paket: PaketProps }) => {
           <div className="flex space-x-4">
             {paket.nama === "Quiz Plan" && (
               <div className="rounded-lg bg-white/10 p-3 text-center">
-              <MessageSquare className="mx-auto mb-2 h-6 w-6 text-blue-100" />
-              <p className="text-sm text-blue-100">Quiz</p>
+                <MessageSquare className="mx-auto mb-2 h-6 w-6 text-blue-100" />
+                <p className="text-sm text-blue-100">Quiz</p>
               </div>
             )}
             {(paket.nama === "Basic Plan" || paket.nama === "Premium Plan") && (
               <>
-              <div className="rounded-lg bg-white/10 p-3 text-center">
-                <MessageSquare className="mx-auto mb-2 h-6 w-6 text-blue-100" />
-                <p className="text-sm text-blue-100">Quiz</p>
-              </div>
-              <div className="rounded-lg bg-white/10 p-3 text-center">
-                <Book className="mx-auto mb-2 h-6 w-6 text-blue-100" />
-                <p className="text-sm text-blue-100">Video</p>
-              </div>
+                <div className="rounded-lg bg-white/10 p-3 text-center">
+                  <MessageSquare className="mx-auto mb-2 h-6 w-6 text-blue-100" />
+                  <p className="text-sm text-blue-100">Quiz</p>
+                </div>
+                <div className="rounded-lg bg-white/10 p-3 text-center">
+                  <Book className="mx-auto mb-2 h-6 w-6 text-blue-100" />
+                  <p className="text-sm text-blue-100">Video</p>
+                </div>
               </>
             )}
             {paket.nama === "Premium Plan" && (
               <div className="rounded-lg bg-white/10 p-3 text-center">
-              <Users className="mx-auto mb-2 h-6 w-6 text-blue-100" />
-              <p className="text-sm text-blue-100">Mentoring</p>
+                <Users className="mx-auto mb-2 h-6 w-6 text-blue-100" />
+                <p className="text-sm text-blue-100">Mentoring</p>
               </div>
             )}
           </div>
