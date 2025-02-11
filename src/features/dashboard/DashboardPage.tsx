@@ -31,9 +31,9 @@ function DashboardPage() {
               </a>
             </div>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                {LEARNING_PATHS_DATA.slice(2, 4).map((course, index) => (
+              {LEARNING_PATHS_DATA.slice(2, 4).map((course, index) => (
                 <CourseCard key={index} path={course} onClick={setSelectedPath} />
-                ))}
+              ))}
             </div>
           </section>
 

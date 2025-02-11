@@ -10,7 +10,7 @@ interface CourseCardProps {
 
 export const CourseCard: React.FC<CourseCardProps> = ({ path, onClick }) => {
   return (
-    <div className=" cursor-pointer overflow-hidden rounded-xl bg-white shadow-sm" onClick={() => onClick(path)}>
+    <div className="cursor-pointer overflow-hidden rounded-xl bg-white shadow-sm" onClick={() => onClick(path)}>
       <div className="relative h-48">
         <Image src={path.thumbnail} alt={path.title} width={100} height={100} className="h-full w-full object-cover" />
         <button className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 transition-opacity hover:opacity-100">

@@ -15,9 +15,8 @@ export default function AccountPage() {
   const [showLogoutDialog, setShowLogoutDialog] = useState(false);
   const [userData, setUserData] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  console.log(userData)
+  console.log(userData);
   useEffect(() => {
-
     const fetchUserData = async () => {
       try {
         if (status === "authenticated" && session?.user) {
@@ -65,8 +64,8 @@ export default function AccountPage() {
               <div className="md:col-span-1">
                 <div className="rounded-lg bg-white p-6 shadow-sm">
                   <div className="flex flex-col items-center">
-                    <Image
-                      src={userData?.image || "/no-profile.webp"}
+                    <img
+                      src={userData?.image || "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"}
                       alt="Profile"
                       width={256}
                       height={256}
@@ -169,17 +168,15 @@ export default function AccountPage() {
                   </form>
 
                   {/* Logout Section */}
-                  <div className="mt-8 pt-8 border-t">
+                  <div className="mt-8 border-t pt-8">
                     <div className="flex items-center justify-between">
                       <div>
                         <h3 className="text-lg font-semibold text-red-600">Logout Account</h3>
-                        <p className="text-sm text-gray-500 mt-1">
-                          Securely sign out from your CivilCareer account
-                        </p>
+                        <p className="mt-1 text-sm text-gray-500">Securely sign out from your CivilCareer account</p>
                       </div>
                       <button
                         onClick={() => setShowLogoutDialog(true)}
-                        className="flex items-center gap-2 px-4 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                        className="flex items-center gap-2 rounded-lg px-4 py-2 text-red-600 transition-colors hover:bg-red-50"
                         aria-label="Open logout confirmation dialog"
                       >
                         <LogOut className="h-5 w-5" />

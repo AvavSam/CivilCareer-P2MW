@@ -21,9 +21,7 @@ interface Paket {
 
 export default function PlansPage() {
   const { packageTitle } = useParams();
-  const selectedPackage = PRICING_DATA.find(
-    (p) => p.title === decodeURIComponent(packageTitle as string)
-  );
+  const selectedPackage = PRICING_DATA.find((p) => p.title === decodeURIComponent(packageTitle as string));
 
   if (!selectedPackage) {
     return <div>Package not found</div>;
