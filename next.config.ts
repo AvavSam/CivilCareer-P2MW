@@ -6,10 +6,12 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         hostname: "images.unsplash.com",
-
       },
       {
         hostname: "discovere.org",
+      },
+      {
+        hostname: "platform-lookaside.fbsbx.com",
       },
     ],
   },

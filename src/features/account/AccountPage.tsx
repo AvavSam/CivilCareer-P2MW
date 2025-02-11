@@ -6,7 +6,7 @@ import { Eye, EyeOff, Settings, LogOut } from "lucide-react";
 import { signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
 import { User } from "next-auth";
-import Image from "next/image";
+// import Image from "next/image";
 
 export default function AccountPage() {
   const { data: session, status } = useSession();
@@ -28,7 +28,7 @@ export default function AccountPage() {
             emailVerified: session.user.emailVerified,
             password: session.user.password,
             createdAt: session.user.createdAt,
-            updatedAt: session.user.updatedAt
+            updatedAt: session.user.updatedAt,
           });
         }
       } catch (error) {
@@ -65,7 +65,10 @@ export default function AccountPage() {
                 <div className="rounded-lg bg-white p-6 shadow-sm">
                   <div className="flex flex-col items-center">
                     <img
-                      src={userData?.image || "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"}
+                      src={
+                        userData?.image ||
+                        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      }
                       alt="Profile"
                       width={256}
                       height={256}

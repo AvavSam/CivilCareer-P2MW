@@ -46,7 +46,7 @@ const Navigation: React.FC<NavigationProps> = ({ user }) => (
           ) : (
             <>
               <Image
-                src="/no-profile.webp"
+                src={user.image || "/images/profile.jpg"}
                 alt="Profile"
                 className="h-10 w-10 rounded-full object-cover"
                 width={40}

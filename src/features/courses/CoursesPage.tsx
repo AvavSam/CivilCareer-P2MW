@@ -47,12 +47,12 @@ export default function CoursesPage() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("all");
 
-    const filteredCourses = courses.filter((course) => {
-      if (activeTab === "all") return true;
-      if (activeTab === "in-progress") return course.status === "in-progress";
-      if (activeTab === "completed") return course.status === "completed";
-      return true;
-    });
+  const filteredCourses = courses.filter((course) => {
+    if (activeTab === "all") return true;
+    if (activeTab === "in-progress") return course.status === "in-progress";
+    if (activeTab === "completed") return course.status === "completed";
+    return true;
+  });
 
   return (
     <div className="flex h-screen bg-gray-50">

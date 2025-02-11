@@ -1,13 +1,19 @@
+// "use client";
 import React from "react";
 import { Search, Bell } from "lucide-react";
 import { IconMenu2 } from "@tabler/icons-react";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 
 interface HeaderProps {
   onToggleSidebar?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
+  const { data: session } = useSession();
+
+  console.log(session);
+
   return (
     <header className="sticky top-0 z-10 flex items-center justify-between border-b border-gray-200 bg-white px-6 py-4 shadow-sm">
       <div className="flex items-center gap-4 md:w-1/2 md:pr-10">
@@ -29,14 +35,18 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
           <span className="absolute right-0 top-0 h-2 w-2 rounded-full bg-red-500"></span>
         </button>
         <div className="flex items-center space-x-4">
-          <Image
-            src="/no-profile.webp"
-            alt="Profile"
-            className="h-10 w-10 rounded-full object-cover"
-            width={40}
-            height={40}
-          />
-          <span className="hidden font-medium text-gray-700 md:inline">User</span>
+          {session?.user.image ? (
+            <Image
+              src={session.user.image}
+              alt="Profile"
+              className="h-10 w-10 rounded-full object-cover"
+              width={40}
+              height={40}
+            />
+          ) : (
+            <div className="h-10 w-10 rounded-full bg-gray-200"></div>
+          )}
+          <span className="hidden font-medium text-gray-700 md:inline">{session?.user.name}</span>
         </div>
       </div>
     </header>
