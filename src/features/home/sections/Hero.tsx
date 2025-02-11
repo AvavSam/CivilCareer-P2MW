@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 const Hero = () => (
   <section className="px-4 pb-20 pt-32 sm:px-6 lg:px-8">
@@ -22,10 +23,12 @@ const Hero = () => (
           </a>
         </div>
         <div>
-          <img
+          <Image
             src="https://discovere.org/wp-content/uploads/2021/10/STEM_Careers_Civil_Engineering-scaled.jpg"
             alt="Civil Engineering"
             className="rounded-xl shadow-2xl"
+            width={600}
+            height={400}
           />
         </div>
       </div>

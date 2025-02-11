@@ -6,6 +6,7 @@ import { Eye, EyeOff, Settings, LogOut } from "lucide-react";
 import { signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
 import { User } from "next-auth";
+import Image from "next/image";
 
 export default function AccountPage() {
   const { data: session, status } = useSession();
@@ -21,10 +22,14 @@ export default function AccountPage() {
       try {
         if (status === "authenticated" && session?.user) {
           setUserData({
-            id: session.user.id || "",
-            name: session.user.name || "",
-            email: session.user.email || "",
-            image: session.user.image || ""
+            id: session.user.id,
+            name: session.user.name,
+            email: session.user.email,
+            image: session.user.image,
+            emailVerified: session.user.emailVerified,
+            password: session.user.password,
+            createdAt: session.user.createdAt,
+            updatedAt: session.user.updatedAt
           });
         }
       } catch (error) {
@@ -60,9 +65,11 @@ export default function AccountPage() {
               <div className="md:col-span-1">
                 <div className="rounded-lg bg-white p-6 shadow-sm">
                   <div className="flex flex-col items-center">
-                    <img
-                      src={userData?.image || "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"}
+                    <Image
+                      src={userData?.image || "/no-profile.webp"}
                       alt="Profile"
+                      width={256}
+                      height={256}
                       className="h-32 w-32 rounded-full object-cover"
                     />
                     <h2 className="mt-4 text-xl font-semibold">{userData?.name || "Loading..."}</h2>

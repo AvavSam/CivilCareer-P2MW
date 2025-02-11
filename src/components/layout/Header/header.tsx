@@ -1,13 +1,13 @@
 import React from "react";
 import { Search, Bell } from "lucide-react";
 import { IconMenu2 } from "@tabler/icons-react";
+import Image from "next/image";
 
 interface HeaderProps {
   onToggleSidebar?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
-
   return (
     <header className="sticky top-0 z-10 flex items-center justify-between border-b border-gray-200 bg-white px-6 py-4 shadow-sm">
       <div className="flex items-center gap-4 md:w-1/2 md:pr-10">
@@ -29,10 +29,12 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
           <span className="absolute right-0 top-0 h-2 w-2 rounded-full bg-red-500"></span>
         </button>
         <div className="flex items-center space-x-4">
-          <img
-            src="https://as1.ftcdn.net/jpg/03/46/83/96/220_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"
+          <Image
+            src="/no-profile.webp"
             alt="Profile"
-            className="h-8 w-8 rounded-full object-cover"
+            className="h-10 w-10 rounded-full object-cover"
+            width={40}
+            height={40}
           />
           <span className="hidden font-medium text-gray-700 md:inline">User</span>
         </div>
