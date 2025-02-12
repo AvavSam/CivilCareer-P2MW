@@ -13,6 +13,9 @@ const nextConfig: NextConfig = {
       {
         hostname: "platform-lookaside.fbsbx.com",
       },
+      {
+        hostname: "lh3.googleusercontent.com",
+      },
     ],
   },
 };
