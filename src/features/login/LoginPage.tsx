@@ -19,7 +19,7 @@ const Login = () => {
       ...data,
       redirect: false,
     });
-    if (result.error) {
+    if (result?.error) {
       return;
     }
     router.push("/dashboard");
