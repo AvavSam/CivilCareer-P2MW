@@ -2,12 +2,14 @@ import React from "react";
 import { Building2 } from "lucide-react";
 import Link from "next/link";
 import { NAV_LINKS } from "../constants";
-import Image from "next/image";
+
 import { User as NextAuthUser } from "next-auth";
 
 interface User extends NextAuthUser {
   emailVerified: Date | null;
   password: string | null;
+  createdAt: Date | null;
+  updatedAt: Date | null;
 }
 
 interface NavigationProps {
@@ -45,12 +47,10 @@ const Navigation: React.FC<NavigationProps> = ({ user }) => (
             </>
           ) : (
             <>
-              <Image
-                src={user.image || "/images/profile.jpg"}
+              <img
+                src="https://as1.ftcdn.net/jpg/03/46/83/96/220_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg"
                 alt="Profile"
-                className="h-10 w-10 rounded-full object-cover"
-                width={40}
-                height={40}
+                className="h-12 w-12 rounded-full object-cover"
               />
               <span className="font-medium text-gray-700">{user.name}</span>
             </>
