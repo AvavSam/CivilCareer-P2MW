@@ -10,8 +10,9 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
 
+  console.log(status);
   console.log(session);
 
   return (
