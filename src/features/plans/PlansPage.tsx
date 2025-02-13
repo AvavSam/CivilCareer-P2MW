@@ -10,6 +10,7 @@ import PaymentMethods from "./PaymentMethods";
 import UpsellSection from "./UpsellSection";
 import { Shield, BookOpen, Award } from "lucide-react";
 import Footer from "../home/sections/Footer";
+import { useEffect } from "react";
 
 interface Paket {
   nama: string;
@@ -20,6 +21,22 @@ interface Paket {
 }
 
 export default function PlansPage() {
+  useEffect(() => {
+    const snapScript = "https://app.sandbox.midtrans.com/snap/snap.js";
+    const clientKey = process.env.MIDTRANS_CLIENT_KEY || "";
+    const script = document.createElement("script");
+
+    script.src = snapScript;
+    script.async = true;
+    script.setAttribute("data-client-key", clientKey);
+    script.src = snapScript;
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
   const { packageTitle } = useParams();
   const selectedPackage = PRICING_DATA.find((p) => p.title === decodeURIComponent(packageTitle as string));
 
@@ -53,7 +70,7 @@ export default function PlansPage() {
           <div className="w-full lg:w-2/3">
             <PackageDetails paket={paket} />
           </div>
-          <div className="w-full space-y-6 lg:w-1/3">{!paket.sudahBayar && <PaymentMethods />}</div>
+          <div className="w-full space-y-6 lg:w-1/3">{!paket.sudahBayar && <PaymentMethods price={paket.harga} />}</div>
         </div>
         {(paket.nama === "Basic Plan" || paket.nama === "Quiz Plan") && <UpsellSection />}
       </main>
