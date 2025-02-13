@@ -1,6 +1,22 @@
 import { Building2, CreditCard, Wallet, ChevronRight } from "lucide-react";
 
-const PaymentMethods = () => {
+interface PaymentMethodsProps {
+  price: number;
+}
+
+const PaymentMethods = ({ price }: PaymentMethodsProps) => {
+  const checkoutHandler = async () => {
+    const response = await fetch("/api/v1/getTokenPayment", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ price }),
+    });
+    const result = await response.json();
+    window.snap.pay(result.token);
+  };
+
   return (
     <div className="mx-auto max-w-3xl">
       <div className="overflow-hidden rounded-lg bg-white shadow-md">
@@ -40,7 +56,10 @@ const PaymentMethods = () => {
               <ChevronRight className="h-4 w-4" />
             </button>
             <hr className="my-4" />
-            <button className="w-full rounded-lg bg-blue-600 py-4 text-lg font-semibold text-white transition-colors hover:bg-blue-700">
+            <button
+              onClick={checkoutHandler}
+              className="w-full rounded-lg bg-blue-600 py-4 text-lg font-semibold text-white transition-colors hover:bg-blue-700"
+            >
               Lanjutkan Pembayaran
             </button>
           </div>
