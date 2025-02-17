@@ -2,16 +2,17 @@ import { Building2, CreditCard, Wallet, ChevronRight } from "lucide-react";
 
 interface PaymentMethodsProps {
   price: number;
+  planName: string;
 }
 
-const PaymentMethods = ({ price }: PaymentMethodsProps) => {
+const PaymentMethods = ({ price, planName }: PaymentMethodsProps) => {
   const checkoutHandler = async () => {
     const response = await fetch("/api/v1/getTokenPayment", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ price }),
+      body: JSON.stringify({ price, planName }),
     });
     const result = await response.json();
     window.snap.pay(result.token);

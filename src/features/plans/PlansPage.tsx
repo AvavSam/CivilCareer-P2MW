@@ -70,7 +70,7 @@ export default function PlansPage() {
           <div className="w-full lg:w-2/3">
             <PackageDetails paket={paket} />
           </div>
-          <div className="w-full space-y-6 lg:w-1/3">{!paket.sudahBayar && <PaymentMethods price={paket.harga} />}</div>
+          <div className="w-full space-y-6 lg:w-1/3">{!paket.sudahBayar && <PaymentMethods price={paket.harga} planName={paket.nama} />}</div>
         </div>
         {(paket.nama === "Basic Plan" || paket.nama === "Quiz Plan") && <UpsellSection />}
       </main>

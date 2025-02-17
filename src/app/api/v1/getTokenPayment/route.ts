@@ -11,7 +11,7 @@ const snap = new Snap({
 
 export async function POST(req: Request) {
   const body = await req.json();
-  const { price } = body;
+  const { price, planName } = body;
 
   const formattedPrice = Number(price.toString().replace(".", ""));
 
@@ -23,7 +23,7 @@ export async function POST(req: Request) {
     item_details: {
       price: formattedPrice,
       quantity: 1,
-      name: "hehe",
+      name: planName,
     },
     customer_details: {
       first_name: "Dwi Candra",
@@ -31,6 +31,7 @@ export async function POST(req: Request) {
       email: "dwicandraandika4@gmail.com",
       phone: "+628123456789",
     }
+
   };
 
   const token = await snap.createTransactionToken(parameter);
