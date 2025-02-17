@@ -25,7 +25,14 @@ export async function POST(req: Request) {
       quantity: 1,
       name: "hehe",
     },
+    customer_details: {
+      first_name: "Dwi Candra",
+      last_name: "Andika",
+      email: "dwicandraandika4@gmail.com",
+      phone: "+628123456789",
+    }
   };
+
   const token = await snap.createTransactionToken(parameter);
   return NextResponse.json({ token });
 }
