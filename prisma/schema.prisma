@@ -60,18 +60,20 @@ model VerificationRequest {
 }
 
 model User {
-  id            String         @id @default(cuid())
-  name          String?
-  email         String?        @unique
-  emailVerified DateTime?
-  image         String?
-  password      String?
-  plan          String[]       @default([])
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
-  accounts      Account[]
-  sessions      Session[]
-  subscriptions Subscription[]
+  id               String             @id @default(cuid())
+  name             String?
+  email            String?            @unique
+  emailVerified    DateTime?
+  image            String?
+  password         String?
+  plan             String[]           @default([])
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  accounts         Account[]
+  sessions         Session[]
+  subscriptions    Subscription[]
+  QuizSubscription QuizSubscription[]
+  Transaction      Transaction[]
 
   @@map("users")
 }
@@ -111,28 +113,52 @@ model LearningPathVideo {
 }
 
 model Plan {
-  id            String         @id @default(cuid())
-  name          String         @unique // Normal atau Premium
-  price         Int // Harga langganan per bulan dalam IDR
-  description   String?
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
-  subscriptions Subscription[]
+  id          String   @id @default(cuid())
+  name        String   @unique // Normal atau Premium
+  price       Int // Harga langganan per bulan dalam IDR
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   @@map("plans")
 }
 
 model Subscription {
-  id            String   @id @default(cuid())
-  userId        String   @unique @map("user_id") // Satu user hanya boleh punya satu plan utama aktif
-  planId        String   @map("plan_id")
-  hasQuizAccess Boolean  @default(false) // Apakah user memiliki akses ke quiz
-  status        String   @default("active") // active, cancelled, expired
-  expiresAt     DateTime // Tanggal kedaluwarsa langganan
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  plan          Plan     @relation(fields: [planId], references: [id], onDelete: Cascade)
+  id        String   @id @default(cuid())
+  userId    String   @unique @map("user_id") // Satu user hanya boleh punya satu plan utama aktif
+  planName  String   @map("plan_name")
+  status    String   @default("active") // active, cancelled, expired
+  expiresAt DateTime // Tanggal kedaluwarsa langganan
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("subscriptions")
+}
+
+model QuizSubscription {
+  id              String   @id @default(cuid())
+  userId          String   @map("user_id")
+  midtransOrderId String   @map("midtrans_order_id") // ID Order dari Midtrans
+  status          String   @default("active") // active, expired, cancelled
+  expiresAt       DateTime // Tanggal kedaluwarsa Paket Quiz
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("quiz_subscriptions")
+}
+
+model Transaction {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  orderId   String   @unique @map("order_id") // ID Order dari Midtrans
+  status    String   @default("pending") // pending, success, failed
+  price     Int // Harga transaksi dalam IDR
+  planName  String // Nama Plan yang dibeli
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("transactions")
 }
