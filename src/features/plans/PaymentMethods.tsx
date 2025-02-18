@@ -1,18 +1,21 @@
 import { Building2, CreditCard, Wallet, ChevronRight } from "lucide-react";
-
+import { GenerateOrderID } from "@/libs/utils";
+//import { useEffect, useState } from "react";
 interface PaymentMethodsProps {
   price: number;
   planName: string;
 }
 
 const PaymentMethods = ({ price, planName }: PaymentMethodsProps) => {
+  const orderId = GenerateOrderID();
+  //  const [status, setStatus] = useState("pending")
   const checkoutHandler = async () => {
     const response = await fetch("/api/v1/getTokenPayment", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ price, planName }),
+      body: JSON.stringify({ price, planName, orderId }),
     });
     const result = await response.json();
     window.snap.pay(result.token);
