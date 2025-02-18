@@ -1,4 +1,3 @@
-import { GenerateOrderID } from "@/libs/utils";
 // import Midtrans from 'midtrans-client-typescript';
 import { Snap } from "midtrans-client-typescript/dist/lib/snap";
 import { NextResponse } from "next/server";
@@ -11,13 +10,13 @@ const snap = new Snap({
 
 export async function POST(req: Request) {
   const body = await req.json();
-  const { price, planName } = body;
+  const { price, planName, orderId } = body;
 
   const formattedPrice = Number(price.toString().replace(".", ""));
 
   const parameter = {
     transaction_details: {
-      order_id: GenerateOrderID(),
+      order_id: orderId,
       gross_amount: formattedPrice,
     },
     item_details: {
@@ -30,8 +29,7 @@ export async function POST(req: Request) {
       last_name: "Andika",
       email: "dwicandraandika4@gmail.com",
       phone: "+628123456789",
-    }
-
+    },
   };
 
   const token = await snap.createTransactionToken(parameter);
