@@ -1,14 +1,32 @@
 import { Building2, CreditCard, Wallet, ChevronRight } from "lucide-react";
 import { GenerateOrderID } from "@/libs/utils";
+import { User } from "next-auth";
 //import { useEffect, useState } from "react";
 interface PaymentMethodsProps {
   price: number;
   planName: string;
+  user: User;
 }
 
-const PaymentMethods = ({ price, planName }: PaymentMethodsProps) => {
+const PaymentMethods = ({ price, planName, user }: PaymentMethodsProps) => {
   const orderId = GenerateOrderID();
   //  const [status, setStatus] = useState("pending")
+
+  const setTransaction = async () => {
+    const response = await fetch("/api/v1/setTransaction", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ orderId, user, price, planName }),
+    });
+    const result = await response.json();
+
+    console.log(result);
+
+    return;
+  };
+
   const checkoutHandler = async () => {
     const response = await fetch("/api/v1/getTokenPayment", {
       method: "POST",
@@ -61,7 +79,10 @@ const PaymentMethods = ({ price, planName }: PaymentMethodsProps) => {
             </button>
             <hr className="my-4" />
             <button
-              onClick={checkoutHandler}
+              onClick={() => {
+                setTransaction();
+                checkoutHandler();
+              }}
               className="w-full rounded-lg bg-blue-600 py-4 text-lg font-semibold text-white transition-colors hover:bg-blue-700"
             >
               Lanjutkan Pembayaran

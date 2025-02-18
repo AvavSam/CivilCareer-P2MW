@@ -11,6 +11,7 @@ import UpsellSection from "./UpsellSection";
 import { Shield, BookOpen, Award } from "lucide-react";
 import Footer from "../home/sections/Footer";
 import { useEffect } from "react";
+import { User } from "next-auth";
 
 interface Paket {
   nama: string;
@@ -20,9 +21,10 @@ interface Paket {
   sudahBayar: boolean;
 }
 
-export default function PlansPage() {
+export default function PlansPage({ user }: { user: User }) {
   useEffect(() => {
     const snapScript = "https://app.sandbox.midtrans.com/snap/snap.js";
+
     const clientKey = process.env.MIDTRANS_CLIENT_KEY || "";
     const script = document.createElement("script");
 
@@ -51,10 +53,9 @@ export default function PlansPage() {
     fitur: selectedPackage.features,
     sudahBayar: false,
   };
-
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navigation />
+      <Navigation user={user} />
       <main className="mx-auto max-w-7xl px-4 py-12 pt-32">
         <HeroSection paket={paket} />
 
@@ -70,7 +71,9 @@ export default function PlansPage() {
           <div className="w-full lg:w-2/3">
             <PackageDetails paket={paket} />
           </div>
-          <div className="w-full space-y-6 lg:w-1/3">{!paket.sudahBayar && <PaymentMethods price={paket.harga} planName={paket.nama} />}</div>
+          <div className="w-full space-y-6 lg:w-1/3">
+            {!paket.sudahBayar && <PaymentMethods price={paket.harga} planName={paket.nama} user={user} />}
+          </div>
         </div>
         {(paket.nama === "Basic Plan" || paket.nama === "Quiz Plan") && <UpsellSection />}
       </main>

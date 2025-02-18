@@ -17,7 +17,8 @@ export default async function HomePage() {
   // required: true,
   // refetchInterval: 0, // Pastikan tidak ada polling otomatis
   // refetchOnWindowFocus: false,
-  // });
+  // })
+  // ;
   return (
     <div className="min-h-screen bg-gray-50">
       <Navigation user={user} />
