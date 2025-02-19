@@ -1,4 +1,3 @@
-// import { AdapterUser } from 'next-auth/adapters';
 import "next-auth";
 
 declare module "next-auth" {
@@ -9,11 +8,44 @@ declare module "next-auth" {
     image?: string | null;
     emailVerified: Date | null;
     password: string | null;
+    subscriptions: {
+      id: string;
+      planName: string;
+      status: string;
+      expiresAt: Date;
+    }[]; // <-- Harus array
     createdAt: Date | null;
     updatedAt: Date | null;
   }
 
   interface Session {
-    user: User;
+    user: {
+      id: string;
+      name: string;
+      email: string;
+      image: string;
+      emailVerified: Date | null;
+      password: string | null;
+      createdAt: Date | null;
+      updatedAt: Date | null;
+      subscriptions: {
+        id: string;
+        planName: string;
+        status: string;
+        expiresAt: Date;
+      }[];
+    };
+  }
+
+  interface JWT {
+    id: string;
+    name: string;
+    email: string;
+    subscriptions: {
+      id: string;
+      planName: string;
+      status: string;
+      expiresAt: Date;
+    }[];
   }
 }

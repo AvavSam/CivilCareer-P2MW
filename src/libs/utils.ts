@@ -24,3 +24,12 @@ export function GenerateOrderID(): string {
 
   return `${timestamp}${randomString}`;
 }
+
+export function formatDate(isoString: any) {
+  const date = new Date(isoString);
+  return date.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+}

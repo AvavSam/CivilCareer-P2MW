@@ -32,6 +32,7 @@ export const authOptions: NextAuthOptions = {
 
         const user = await prisma.user.findUnique({
           where: { email: credentials.email },
+          include: { subscriptions: true },
         });
 
         if (!user || !(await bcrypt.compare(credentials.password, user.password))) {
@@ -53,14 +54,29 @@ export const authOptions: NextAuthOptions = {
         session.user.id = token.id as string;
         session.user.name = token.name as string;
         session.user.email = token.email as string;
+        session.user.subscriptions = Array.isArray(token.subscriptions)
+          ? (token.subscriptions as { id: string; planName: string; status: string; expiresAt: Date }[])
+          : [];
       }
       return session;
     },
+
     async jwt({ token, user }) {
       if (user) {
+        const userWithSubscription = await prisma.user.findUnique({
+          where: { id: user.id },
+          include: { subscriptions: true }, // Ambil data subscriptions
+        });
         token.id = user.id;
         token.name = user.name;
         token.email = user.email;
+        token.subscriptions =
+          (userWithSubscription?.subscriptions.map((sub) => ({
+            id: sub.id,
+            planName: sub.planName,
+            status: sub.status,
+            expiresAt: sub.expiresAt,
+          })) as { id: string; planName: string; status: string; expiresAt: Date }[]) || [];
       }
       return token;
     },

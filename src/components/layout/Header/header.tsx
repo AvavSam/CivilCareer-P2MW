@@ -10,10 +10,7 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
-  const { data: session, status } = useSession();
-
-  console.log(status);
-  console.log(session);
+  const { data: session } = useSession();
 
   return (
     <header className="sticky top-0 z-10 flex items-center justify-between border-b border-gray-200 bg-white px-6 py-4 shadow-sm">

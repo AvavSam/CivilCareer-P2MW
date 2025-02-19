@@ -6,7 +6,8 @@ import { Eye, EyeOff, Settings, LogOut } from "lucide-react";
 import { signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
 import { User } from "next-auth";
-// import Image from "next/image";
+import Image from "next/image";
+import { formatDate } from "@/libs/utils";
 
 export default function AccountPage() {
   const { data: session, status } = useSession();
@@ -15,7 +16,6 @@ export default function AccountPage() {
   const [showLogoutDialog, setShowLogoutDialog] = useState(false);
   const [userData, setUserData] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  console.log(userData);
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -29,6 +29,7 @@ export default function AccountPage() {
             password: session.user.password,
             createdAt: session.user.createdAt,
             updatedAt: session.user.updatedAt,
+            subscriptions: session.user.subscriptions || [], // Harus array
           });
         }
       } catch (error) {
@@ -49,7 +50,8 @@ export default function AccountPage() {
     window.location.href = "/auth/signin";
     return null;
   }
-
+  const expDate = formatDate(userData?.subscriptions[0].expiresAt);
+  console.log(userData);
   return (
     <div className="flex h-screen bg-gray-50">
       <Sidebar isOpen={isSidebarOpen} onOpenChange={setIsSidebarOpen} />
@@ -64,7 +66,7 @@ export default function AccountPage() {
               <div className="md:col-span-1">
                 <div className="rounded-lg bg-white p-6 shadow-sm">
                   <div className="flex flex-col items-center">
-                    <img
+                    <Image
                       src={
                         userData?.image ||
                         "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
@@ -82,15 +84,19 @@ export default function AccountPage() {
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-gray-600">Package</span>
-                        <span className="rounded-full bg-gray-100 px-2 py-1 text-sm">Premium</span>
+                        <span className="rounded-full bg-gray-100 px-2 py-1 text-sm">
+                          {userData?.subscriptions[0].planName}
+                        </span>
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-gray-600">Status</span>
-                        <span className="rounded-full bg-green-100 px-2 py-1 text-sm text-green-800">Active</span>
+                        <span className="rounded-full bg-green-100 px-2 py-1 text-sm text-green-800">
+                          {userData?.subscriptions[0].status}
+                        </span>
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-gray-600">Valid Until</span>
-                        <span className="text-sm">Dec 31, 2024</span>
+                        <span className="text-sm">{expDate}</span>
                       </div>
                     </div>
                     <div className="mt-4 border-t pt-4">
