@@ -1,4 +1,4 @@
-export async function ServerSideRenderedComponent(title: string) {
+export default async function ServerSideRenderedComponent(title: string) {
   const dataVideo = await fetch("http://localhost:3000/api/v1/getVideo", {
     method: "POST",
     headers: {
@@ -25,7 +25,7 @@ export function GenerateOrderID(): string {
   return `${timestamp}${randomString}`;
 }
 
-export function formatDate(isoString: any) {
+export function formatDate(isoString: Date) {
   const date = new Date(isoString);
   return date.toLocaleDateString("en-US", {
     month: "short",

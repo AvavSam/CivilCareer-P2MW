@@ -16,20 +16,35 @@ export default function AccountPage() {
   const [showLogoutDialog, setShowLogoutDialog] = useState(false);
   const [userData, setUserData] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
+        if (!session?.user) {
+          return;
+        }
+        const data = await fetch("/api/v1/getUser", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userId: session.user.id,
+          }),
+        });
+        const user = await data.json();
+
         if (status === "authenticated" && session?.user) {
           setUserData({
-            id: session.user.id,
-            name: session.user.name,
-            email: session.user.email,
-            image: session.user.image,
-            emailVerified: session.user.emailVerified,
-            password: session.user.password,
-            createdAt: session.user.createdAt,
-            updatedAt: session.user.updatedAt,
-            subscriptions: session.user.subscriptions || [], // Harus array
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            image: user.image,
+            emailVerified: user.emailVerified,
+            password: user.password,
+            createdAt: user.createdAt,
+            updatedAt: user.updatedAt,
+            subscriptions: user.subscriptions || [], // Harus array
           });
         }
       } catch (error) {
@@ -50,7 +65,10 @@ export default function AccountPage() {
     window.location.href = "/auth/signin";
     return null;
   }
-  const expDate = formatDate(userData?.subscriptions[0].expiresAt);
+  if (!userData) {
+    return;
+  }
+  const expDate = formatDate(userData.subscriptions[0].expiresAt);
   console.log(userData);
   return (
     <div className="flex h-screen bg-gray-50">
