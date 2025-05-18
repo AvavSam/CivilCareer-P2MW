@@ -22,53 +22,52 @@ export async function POST(req: Request) {
     },
   });
 
-  updateSubscription(order_id);
+  // updateSubscription(order_id);
 
   console.log(response);
   return new NextResponse(JSON.stringify({ status: "success", transaction_status, order_id }));
 }
 
-const updateSubscription = async (orderId: string) => {
-  const transaction = await prisma.transaction.findUnique({
-    where: {
-      orderId: orderId,
-    },
-    include: {
-      user: true,
-    },
-  });
-
-  const existingSubscription = await prisma.subscription.findFirst({
-    where: {
-      userId: transaction?.user.id,
-    },
-  });
-
-  const newExpiryDate = new Date();
-
-  newExpiryDate.setMonth(newExpiryDate.getMonth() + 1);
-
-  if (existingSubscription) {
-    await prisma.subscription.update({
-      where: {
-        id: existingSubscription.id,
-      },
-      data: {
-        expiresAt: newExpiryDate,
-        updatedAt: new Date(),
-      },
-    });
-  } else {
-    if (!transaction?.userId) {
-      throw new Error("User ID tidak ditemukan dalam transaksi.");
-    }
-    await prisma.subscription.create({
-      data: {
-        userId: transaction?.user.id,
-        planName: transaction?.planName || "",
-        status: "active",
-        expiresAt: newExpiryDate,
-      },
-    });
-  }
-};
+//   const transaction = await prisma.transaction.findUnique({
+//     where: {
+//       orderId: orderId,
+//     },
+//     include: {
+//       user: true,
+//     },
+//   });
+//
+//   const existingSubscription = await prisma.subscription.findFirst({
+//     where: {
+//       userId: transaction?.user.id,
+//     },
+//   });
+//
+//   const newExpiryDate = new Date();
+//
+//   newExpiryDate.setMonth(newExpiryDate.getMonth() + 1);
+//
+//   if (existingSubscription) {
+//     await prisma.subscription.update({
+//       where: {
+//         id: existingSubscription.id,
+//       },
+//       data: {
+//         expiresAt: newExpiryDate,
+//         updatedAt: new Date(),
+//       },
+//     });
+//   } else {
+//     if (!transaction?.userId) {
+//       throw new Error("User ID tidak ditemukan dalam transaksi.");
+//     }
+//     await prisma.subscription.create({
+//       data: {
+//         userId: transaction?.user.id,
+//         planName: transaction?.planName || "",
+//         status: "active",
+//         expiresAt: newExpiryDate,
+//       },
+//     });
+//   }
+// };

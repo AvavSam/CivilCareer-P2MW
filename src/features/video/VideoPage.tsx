@@ -23,7 +23,7 @@ function VideoPage(data: any | undefined) {
 
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
               <div className="lg:col-span-2">
-                <VideoPlayer url={data.datas.url} />
+                <VideoPlayer url="https://lyyxsisymxucimveitvd.supabase.co/storage/v1/object/public/videos//Suara%20kucing.mp4" />
               </div>
 
               <LessonList lessons={LESSONS_DATA} />

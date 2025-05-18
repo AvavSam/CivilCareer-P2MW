@@ -41,7 +41,6 @@ export default function AccountPage() {
             email: user.email,
             image: user.image,
             emailVerified: user.emailVerified,
-            password: user.password,
             createdAt: user.createdAt,
             updatedAt: user.updatedAt,
             subscriptions: user.subscriptions || [], // Harus array
@@ -68,8 +67,7 @@ export default function AccountPage() {
   if (!userData) {
     return;
   }
-  const expDate = formatDate(userData.subscriptions[0].expiresAt);
-  console.log(userData);
+  const expDate = formatDate(userData.subscriptions[0]?.expiresAt);
   return (
     <div className="flex h-screen bg-gray-50">
       <Sidebar isOpen={isSidebarOpen} onOpenChange={setIsSidebarOpen} />
@@ -103,13 +101,13 @@ export default function AccountPage() {
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-gray-600">Package</span>
                         <span className="rounded-full bg-gray-100 px-2 py-1 text-sm">
-                          {userData?.subscriptions[0].planName}
+                          {userData?.subscriptions[0]?.planName}
                         </span>
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-gray-600">Status</span>
                         <span className="rounded-full bg-green-100 px-2 py-1 text-sm text-green-800">
-                          {userData?.subscriptions[0].status}
+                          {userData?.subscriptions[0]?.status}
                         </span>
                       </div>
                       <div className="flex items-center justify-between">
