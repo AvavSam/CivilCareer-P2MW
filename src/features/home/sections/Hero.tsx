@@ -15,7 +15,7 @@ const Hero = () => (
             Tingkatkan pemahaman Anda melalui kursus interaktif yang komprehensif.
           </p>
           <a
-            href="#CTA"
+            href="/dashboard"
             className="flex w-fit items-center rounded-lg bg-blue-600 px-8 py-4 text-white transition-colors hover:bg-blue-700"
           >
             Mulai Belajar Sekarang

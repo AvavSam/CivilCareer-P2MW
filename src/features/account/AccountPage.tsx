@@ -9,6 +9,69 @@ import { User } from "next-auth";
 import Image from "next/image";
 import { formatDate } from "@/libs/utils";
 
+// Skeleton components for loading states
+const ProfileSkeleton = () => (
+  <div className="rounded-lg bg-white p-6 shadow-sm animate-pulse">
+    <div className="flex flex-col items-center">
+      <div className="h-32 w-32 rounded-full bg-gray-200" />
+      <div className="mt-4 h-6 w-40 rounded bg-gray-200" />
+      <div className="mt-2 h-4 w-60 rounded bg-gray-200" />
+    </div>
+    <div className="mt-6 border-t pt-6">
+      <div className="h-5 w-24 rounded bg-gray-200 mb-4" />
+      <div className="space-y-2">
+        {[...Array(3)].map((_, i) => (
+          <div key={i} className="flex items-center justify-between">
+            <div className="h-4 w-20 rounded bg-gray-200" />
+            <div className="h-4 w-24 rounded bg-gray-200" />
+          </div>
+        ))}
+      </div>
+      <div className="mt-4 border-t pt-4">
+        <div className="h-4 w-32 rounded bg-gray-200 mb-2" />
+        {[...Array(4)].map((_, i) => (
+          <div key={i} className="h-4 w-full rounded bg-gray-200 mt-1" />
+        ))}
+      </div>
+    </div>
+  </div>
+);
+
+const AccountSettingsSkeleton = () => (
+  <div className="rounded-lg bg-white p-6 shadow-sm animate-pulse">
+    <div className="mb-6 flex items-center gap-2">
+      <div className="h-5 w-5 rounded bg-gray-200" />
+      <div className="h-6 w-48 rounded bg-gray-200" />
+    </div>
+    <div className="space-y-4">
+      <div className="grid gap-4 md:grid-cols-2">
+        {[...Array(2)].map((_, i) => (
+          <div key={i} className="space-y-2">
+            <div className="h-4 w-16 rounded bg-gray-200" />
+            <div className="h-10 w-full rounded bg-gray-200" />
+          </div>
+        ))}
+      </div>
+      <div className="space-y-2">
+        <div className="h-4 w-20 rounded bg-gray-200" />
+        <div className="h-10 w-full rounded bg-gray-200" />
+      </div>
+      <div className="flex justify-end">
+        <div className="h-10 w-32 rounded bg-gray-200" />
+      </div>
+    </div>
+    <div className="mt-8 border-t pt-8">
+      <div className="flex items-center justify-between">
+        <div>
+          <div className="h-5 w-36 rounded bg-gray-200" />
+          <div className="mt-1 h-4 w-60 rounded bg-gray-200" />
+        </div>
+        <div className="h-10 w-24 rounded bg-gray-200" />
+      </div>
+    </div>
+  </div>
+);
+
 export default function AccountPage() {
   const { data: session, status } = useSession();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -56,18 +119,19 @@ export default function AccountPage() {
     fetchUserData();
   }, [session, status]);
 
-  if (status === "loading" || isLoading) {
-    return <div className="flex h-screen items-center justify-center">Loading...</div>;
-  }
-
   if (status === "unauthenticated") {
     window.location.href = "/auth/signin";
     return null;
   }
-  if (!userData) {
-    return;
-  }
-  const expDate = formatDate(userData.subscriptions[0]?.expiresAt);
+
+  // Render skeleton UI while loading
+  const isLoadingData = status === "loading" || isLoading;
+  const showSkeletons = isLoadingData || !userData;
+
+  const expDate = userData?.subscriptions?.[0]?.expiresAt
+    ? formatDate(userData.subscriptions[0].expiresAt)
+    : "N/A";
+
   return (
     <div className="flex h-screen bg-gray-50">
       <Sidebar isOpen={isSidebarOpen} onOpenChange={setIsSidebarOpen} />
@@ -80,7 +144,10 @@ export default function AccountPage() {
             <div className="grid gap-6 md:grid-cols-3">
               {/* Profile Overview */}
               <div className="md:col-span-1">
-                <div className="rounded-lg bg-white p-6 shadow-sm">
+                {showSkeletons ? (
+                  <ProfileSkeleton />
+                ) : (
+                  <div className="rounded-lg bg-white p-6 shadow-sm">
                   <div className="flex flex-col items-center">
                     <Image
                       src={
@@ -126,11 +193,15 @@ export default function AccountPage() {
                     </div>
                   </div>
                 </div>
+                )}
               </div>
 
               {/* Account Settings */}
               <div className="md:col-span-2">
-                <div className="rounded-lg bg-white p-6 shadow-sm">
+                {showSkeletons ? (
+                  <AccountSettingsSkeleton />
+                ) : (
+                  <div className="rounded-lg bg-white p-6 shadow-sm">
                   <div className="mb-6 flex items-center gap-2">
                     <Settings className="h-5 w-5" />
                     <h2 className="text-xl font-semibold">Account Settings</h2>
@@ -210,6 +281,7 @@ export default function AccountPage() {
                     </div>
                   </div>
                 </div>
+                )}
               </div>
             </div>
           </div>
