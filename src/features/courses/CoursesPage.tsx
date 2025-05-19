@@ -10,7 +10,7 @@ const courses = [
     title: "Structural Analysis Fundamentals",
     thumbnail: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop&q=60",
     progress: 75,
-    instructor: "Dr. Sarah Chen",
+    instructor: "Dr. Rina Wulandari",
     duration: "8 weeks",
     status: "in-progress",
   },
@@ -19,7 +19,7 @@ const courses = [
     title: "Advanced Concrete Design",
     thumbnail: "https://images.unsplash.com/photo-1590069261209-f8e9b8642343?w=800&auto=format&fit=crop&q=60",
     progress: 100,
-    instructor: "Prof. Michael Roberts",
+    instructor: "Prof. Ahmad Suryadi",
     duration: "12 weeks",
     status: "completed",
   },
@@ -28,7 +28,7 @@ const courses = [
     title: "Foundation Engineering",
     thumbnail: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=800&auto=format&fit=crop&q=60",
     progress: 30,
-    instructor: "Dr. James Wilson",
+    instructor: "Arief Widodo",
     duration: "10 weeks",
     status: "in-progress",
   },
@@ -37,7 +37,7 @@ const courses = [
     title: "Steel Structure Design",
     thumbnail: "https://images.unsplash.com/photo-1492321936769-b49830bc1d1e?w=800&auto=format&fit=crop&q=60",
     progress: 0,
-    instructor: "Prof. Emily Parker",
+    instructor: "Dewi Purnama",
     duration: "10 weeks",
     status: "not-started",
   },
@@ -78,11 +78,10 @@ export default function CoursesPage() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`relative px-4 py-2 text-sm font-medium transition-colors ${
-                    activeTab === tab.id
+                  className={`relative px-4 py-2 text-sm font-medium transition-colors ${activeTab === tab.id
                       ? "border-b-2 border-blue-600 text-blue-600"
                       : "text-gray-600 hover:text-gray-900"
-                  }`}
+                    }`}
                 >
                   {tab.label}
                 </button>
