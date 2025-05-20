@@ -11,7 +11,8 @@ import { useParams } from 'next/navigation';
 const mentorData = {
   id: 1,
   name: "Dr. Budi Santoso",
-  avatar: "https://i.pravatar.cc/300?img=1",
+  avatar:
+    "https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg",
   title: "AutoCAD Specialist",
   specializations: ["autocad", "3d-modeling", "architecture"],
   experience: "12 years",
@@ -34,24 +35,24 @@ I enjoy helping students and professionals improve their AutoCAD skills, whether
     "AutoLISP programming",
     "3D modeling and rendering",
     "Drawing automation",
-    "Project setup and standards"
+    "Project setup and standards",
   ],
   education: [
     {
       degree: "Ph.D. in Architectural Engineering",
       institution: "Universitas Indonesia",
-      year: "2011"
+      year: "2011",
     },
     {
       degree: "Master's in Architecture",
       institution: "Institut Teknologi Bandung",
-      year: "2007"
-    }
+      year: "2007",
+    },
   ],
   certifications: [
     "Autodesk Certified Professional: AutoCAD",
     "Autodesk Certified Instructor",
-    "BIM Level 2 Certified Professional"
+    "BIM Level 2 Certified Professional",
   ],
   badges: ["Top Rated", "Certified Expert"],
   sessionTypes: [
@@ -59,20 +60,20 @@ I enjoy helping students and professionals improve their AutoCAD skills, whether
       type: "One-on-One Tutorial",
       description: "Personalized tutoring session focused on your specific learning needs",
       duration: "60 min",
-      price: 1250000
+      price: 1250000,
     },
     {
       type: "Project Review",
       description: "Get expert feedback and suggestions on your AutoCAD project",
       duration: "45 min",
-      price: 950000
+      price: 950000,
     },
     {
       type: "Career Coaching",
       description: "Guidance on AutoCAD career paths, portfolio review, and industry advice",
       duration: "60 min",
-      price: 1250000
-    }
+      price: 1250000,
+    },
   ],
   reviews: [
     {
@@ -80,30 +81,33 @@ I enjoy helping students and professionals improve their AutoCAD skills, whether
       user: "Bambang S.",
       rating: 5,
       date: "2 weeks ago",
-      content: "Dr. Santoso was incredibly helpful in teaching me advanced 3D modeling techniques. He was patient and explained concepts clearly. I learned more in one hour than in weeks of watching tutorials!"
+      content:
+        "Dr. Santoso was incredibly helpful in teaching me advanced 3D modeling techniques. He was patient and explained concepts clearly. I learned more in one hour than in weeks of watching tutorials!",
     },
     {
       id: 2,
       user: "Siti W.",
       rating: 5,
       date: "1 month ago",
-      content: "Excellent session! Dr. Santoso reviewed my architectural project and provided valuable feedback that greatly improved my design. His expertise is evident and I appreciated his attention to detail."
+      content:
+        "Excellent session! Dr. Santoso reviewed my architectural project and provided valuable feedback that greatly improved my design. His expertise is evident and I appreciated his attention to detail.",
     },
     {
       id: 3,
       user: "Dimas L.",
       rating: 4,
       date: "2 months ago",
-      content: "Very knowledgeable about AutoCAD. Helped me solve some complex issues with my project that I'd been stuck on for days. Would definitely book another session."
-    }
+      content:
+        "Very knowledgeable about AutoCAD. Helped me solve some complex issues with my project that I'd been stuck on for days. Would definitely book another session.",
+    },
   ],
   availableDates: [
     { date: "2023-10-15", slots: ["9:00 AM", "11:00 AM", "2:00 PM", "4:00 PM"] },
     { date: "2023-10-16", slots: ["10:00 AM", "1:00 PM", "3:00 PM"] },
     { date: "2023-10-17", slots: ["9:00 AM", "11:00 AM", "2:00 PM"] },
     { date: "2023-10-18", slots: ["11:00 AM", "2:00 PM", "4:00 PM"] },
-    { date: "2023-10-19", slots: ["9:00 AM", "1:00 PM", "3:00 PM"] }
-  ]
+    { date: "2023-10-19", slots: ["9:00 AM", "1:00 PM", "3:00 PM"] },
+  ],
 };
 
 export default function MentorProfilePage() {

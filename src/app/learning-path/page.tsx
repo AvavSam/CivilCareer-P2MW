@@ -466,7 +466,7 @@ export default function Page() {
 
           {/* Learning Path Selector */}
           <div className="mb-8 flex flex-wrap gap-3">
-            {Object.entries(learningPaths).map(([key, path]) => (
+            {Object.entries(learningPaths).map(([key]) => (
               <button
                 key={key}
                 onClick={() => setActivePath(key)}

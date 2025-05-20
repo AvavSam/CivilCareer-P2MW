@@ -61,7 +61,7 @@ body {
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
-}
+
 
 @layer base {
   * {
@@ -70,5 +70,38 @@ body {
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .section-padding {
+    @apply px-4 py-16 md:px-8 md:py-20 lg:px-12 lg:py-24;
+  }
+
+  .reveal {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s, visibility 0.6s;
+  }
+
+  .reveal.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .card-shadow {
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
+  }
+
+  .btn-hover {
+    @apply transform transition-all duration-300 hover:scale-105;
   }
 }

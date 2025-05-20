@@ -91,21 +91,21 @@ export const TESTIMONIAL_DATA: TestimonialData[] = [
   {
     name: "Budi Santoso",
     role: "Mahasiswa Teknik Sipil",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80",
+    image: "https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg",
     content:
       "Platform ini sangat membantu saya dalam memahami konsep-konsep teknik sipil yang kompleks. Materinya lengkap dan mudah dipahami.",
   },
   {
     name: "Siti Rahayu",
     role: "Fresh Graduate",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80",
+    image: "https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg",
     content:
       "Saya berhasil lulus ujian insinyur berkat latihan soal yang disediakan. Pembahasan sangat detail dan aplikatif.",
   },
   {
     name: "Ahmad Hidayat",
     role: "Praktisi Konstruksi",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80",
+    image: "https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg",
     content: "Sebagai praktisi, saya menemukan banyak insight baru dari course yang disediakan. Sangat worth it!",
   },
 ];

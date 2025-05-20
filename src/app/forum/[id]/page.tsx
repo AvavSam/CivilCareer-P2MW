@@ -14,7 +14,7 @@ const threadData = {
   category: 'autocad',
   author: {
     name: 'Agus Setiawan',
-    avatarUrl: 'https://i.pravatar.cc/150?img=1',
+    avatarUrl: 'https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg',
     badge: 'Intermediate',
     joinDate: 'Jan 2022',
     posts: 124
@@ -22,16 +22,16 @@ const threadData = {
   createdAt: '2 days ago',
   content: `
     <p>I've been working on a residential floor plan, and I need to create curved walls for a rounded entryway. I've tried using the Arc tool followed by the Wall command, but I'm having trouble getting consistent results.</p>
-    
+
     <p>What's the best approach for creating curved walls in AutoCAD? I'd appreciate any tips or step-by-step instructions.</p>
-    
+
     <p>Here are the specific issues I'm encountering:</p>
     <ul>
       <li>Wall thickness isn't consistent around the curve</li>
       <li>Connecting the curved wall to straight walls creates gaps</li>
       <li>Dimensioning the curved walls accurately</li>
     </ul>
-    
+
     <p>Thanks in advance for your help!</p>
   `,
   likes: 24,
@@ -41,7 +41,7 @@ const threadData = {
       id: 'reply1',
       author: {
         name: 'Ratna Dewi',
-        avatarUrl: 'https://i.pravatar.cc/150?img=4',
+        avatarUrl: 'https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg',
         badge: 'Expert',
         joinDate: 'Mar 2020',
         posts: 532
@@ -49,16 +49,16 @@ const threadData = {
       createdAt: '2 days ago',
       content: `
         <p>There are several approaches for creating curved walls in AutoCAD. Here's the method I find most reliable:</p>
-        
+
         <ol>
           <li>First, create your curved path using the PLINE command with the Arc option (A)</li>
           <li>Then use the OFFSET command to create parallel curves at your desired wall thickness</li>
           <li>Connect the ends with straight lines or arcs as needed</li>
           <li>Finally, use the REGION command to create closed shapes, then subtract/union as needed</li>
         </ol>
-        
+
         <p>For connecting to straight walls, make sure your endpoint snaps are enabled and consider using the FILLET command with an appropriate radius to create smooth transitions.</p>
-        
+
         <p>Hope this helps!</p>
       `,
       likes: 18,
@@ -68,7 +68,7 @@ const threadData = {
       id: 'reply2',
       author: {
         name: 'Eko Purnomo',
-        avatarUrl: 'https://i.pravatar.cc/150?img=3',
+        avatarUrl: 'https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg',
         badge: 'Beginner',
         joinDate: 'Oct 2022',
         posts: 37
@@ -76,13 +76,13 @@ const threadData = {
       createdAt: '1 day ago',
       content: `
         <p>I had the same issue and found that using the POLYLINE command with width options works well too. You can:</p>
-        
+
         <ol>
           <li>Type PLINE in the command line</li>
           <li>Before drawing, type W and set your wall width</li>
           <li>Then draw your curved wall with arc segments</li>
         </ol>
-        
+
         <p>One limitation is that the width is uniform, which may not work for all wall types.</p>
       `,
       likes: 7,
@@ -92,7 +92,7 @@ const threadData = {
       id: 'reply3',
       author: {
         name: 'Sri Wahyuni',
-        avatarUrl: 'https://i.pravatar.cc/150?img=2',
+        avatarUrl: 'https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg',
         badge: 'Advanced',
         joinDate: 'Apr 2021',
         posts: 283
@@ -100,15 +100,15 @@ const threadData = {
       createdAt: '12 hours ago',
       content: `
         <p>For architectural drawings specifically, I'd recommend using the AEC objects if you have AutoCAD Architecture:</p>
-        
+
         <ol>
           <li>Use the Wall tool which has built-in support for curved walls</li>
           <li>You can set properties like width, height, and materials</li>
           <li>Curved walls will automatically clean up intersections with straight walls</li>
         </ol>
-        
+
         <p>If you're using standard AutoCAD, Ratna's approach is definitely the way to go.</p>
-        
+
         <p>@Agus - I'd be happy to share some example drawings if that would help. Just let me know!</p>
       `,
       likes: 12,

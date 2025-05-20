@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Header } from '@/components/layout/Header/header';
 import { Sidebar } from '@/components/layout/Sidebar';
-import { Search, Filter, Star, Clock, Calendar, Users, ChevronRight, Award, BookOpen, CheckCircle, MessageSquare } from 'lucide-react';
+import { Search, Filter, Star, Clock, Calendar, Award } from 'lucide-react';
 import Link from 'next/link';
 
 // Sample mentor data
@@ -11,7 +11,7 @@ const mentors = [
   {
     id: 1,
     name: "Dr. Budi Santoso",
-    avatar: "https://i.pravatar.cc/300?img=1",
+    avatar: "https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg",
     title: "AutoCAD Specialist",
     specializations: ["autocad", "3d-modeling", "architecture"],
     experience: "12 years",
@@ -27,7 +27,7 @@ const mentors = [
   {
     id: 2,
     name: "Arief Widodo",
-    avatar: "https://i.pravatar.cc/300?img=2",
+    avatar: "https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg",
     title: "Budget Planning Expert",
     specializations: ["rab", "cost-estimation", "project-management"],
     experience: "8 years",
@@ -43,7 +43,7 @@ const mentors = [
   {
     id: 3,
     name: "Dr. Rina Wulandari",
-    avatar: "https://i.pravatar.cc/300?img=3",
+    avatar: "https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg",
     title: "Structural Analysis Expert",
     specializations: ["sap2000", "structural-engineering", "earthquake-analysis"],
     experience: "15 years",
@@ -59,7 +59,7 @@ const mentors = [
   {
     id: 4,
     name: "Dewi Purnama",
-    avatar: "https://i.pravatar.cc/300?img=4",
+    avatar: "https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg",
     title: "AutoCAD & Project Management",
     specializations: ["autocad", "project-management", "rab"],
     experience: "10 years",
@@ -75,7 +75,7 @@ const mentors = [
   {
     id: 5,
     name: "Prof. Ahmad Suryadi",
-    avatar: "https://i.pravatar.cc/300?img=5",
+    avatar: "https://static.vecteezy.com/system/resources/previews/009/292/244/non_2x/default-avatar-icon-of-social-media-user-vector.jpg",
     title: "SAP2000 & Structural Analysis",
     specializations: ["sap2000", "structural-engineering", "bridge-design"],
     experience: "18 years",
